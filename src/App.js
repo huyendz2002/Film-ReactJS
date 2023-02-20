@@ -7,7 +7,7 @@ import MovieDetails from "./component/movieDetails/MovieDetails";
 
 function App() {
   return (
-    <div className="bg-[#3d3d3d] px-14 py-6">
+    <div className="bg-black px-14 py-6">
       <div className="w-36 flex text-white mx-auto justify-between ">
         <NavLink
           to={"/"}
