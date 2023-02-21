@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
