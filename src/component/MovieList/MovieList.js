@@ -8,7 +8,7 @@ const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [submit, setSubmit] = useState(false);
+  const [textValue, setTextValue] = useState("");
   const debounceValue = useDebounce(text, 50);
 
   // ..................................Pagination.........................................................
@@ -65,20 +65,20 @@ const MovieList = () => {
       setLoading(false);
     }
     fetchData();
-  }, [submit, itemOffset]);
+  }, [itemOffset, debounceValue, page]);
   return (
     <div className="h-[1800px] relative max-lg:w-full max-lg:h-auto">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setSubmit(!submit);
+          setText(textValue);
         }}
         className=" w-max mx-auto mt-8  max-lg:w-1/2"
       >
         <input
           type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          defaultValue={text}
+          onChange={(e) => setTextValue(e.target.value)}
           placeholder="Type here to search..."
           className="h-10 w-[30rem] bg-slate-800 text-white max-lg:w-9/12 "
         />
