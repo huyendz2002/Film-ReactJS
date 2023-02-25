@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="bg-black px-14 py-6 max-lg:px-0 max-lg:w-screen">
+    <div className="bg-black px-14 py-6 max-lg:px-0 ">
       <div className="w-36 flex text-white mx-auto justify-between ">
         <NavLink
           to={"/"}
