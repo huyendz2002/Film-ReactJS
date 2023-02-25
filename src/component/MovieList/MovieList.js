@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
@@ -58,65 +58,60 @@ const MovieList = () => {
             : `https://api.themoviedb.org/3/movie/popular?api_key=d9fee3480f7dc1611fdc57aef19f3d15&query=''&page=${page}`
         )
         .then((response) => {
-          // console.log(response);
           setMovieList(response.data.results);
           setData(response.data);
         });
-      // console.log(callapi);
+      console.log(callapi);
       setLoading(false);
     }
     fetchData();
   }, [submit, itemOffset]);
   return (
-    <div className="h-[1800px] relative ">
+    <div className="h-[1800px] relative max-lg:w-full max-lg:h-auto">
       <form
         onSubmit={(e) => {
           e.preventDefault();
           setSubmit(!submit);
-          // setText(e.target.value);
-          // console.log("submit");
         }}
-        className="max-w-max mx-auto mt-8"
+        className=" w-max mx-auto mt-8  max-lg:w-1/2"
       >
         <input
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Type here to search..."
-          className="h-10 w-[30rem] bg-slate-800 text-white"
+          className="h-10 w-[30rem] bg-slate-800 text-white max-lg:w-9/12 "
         />
         <button
           type="submit"
-          className="text-white ml-4 bg-[#ff0077] w-10 h-10"
+          className="text-white ml-4 bg-[#ff0077] w-10 h-10 max-lg:w-2/12 max-lg:ml-[3%]"
         >
-          <i className="fa-solid fa-magnifying-glass ]"></i>
+          <i className="fa-solid fa-magnifying-glass "></i>
         </button>
       </form>
-      <div className="w-12 h-12  mx-auto mt-4">
+      <div className="w-12 h-12 mx-auto mt-4">
         {loading ? (
           <div className="w-12 h-12 border-4 border-dotted border-blue-500 animate-spin  border-r-transparent rounded-full  "></div>
         ) : (
           ""
         )}
       </div>
-      <div className="grid grid-cols-5 gap-6 mt-8 ">
+      <div className="grid grid-cols-5 gap-6 mb-4 max-lg:grid-cols-3 max-sm:grid-cols-1">
         {movieList.length > 0 &&
           movieList.map((movie, index) => (
             <Movie key={movie.id} data={movie}></Movie>
           ))}
       </div>
-      <div className="PAGINATION absolute w-full bottom-10 left-[50%] translate-x-[-50%] flex justify-around">
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-          className="pagination"
-        />
-      </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="<previous"
+        renderOnZeroPageCount={null}
+        className="pagination flex flex-wrap "
+      />
     </div>
   );
 };
@@ -135,8 +130,8 @@ const Movie = (props) => {
       <h3 className="text-white mt-2 text-[12px]">
         {props.data.name || props.data.title}
       </h3>
-      <div className=" absolute left-[50%] translate-x-[-50%] bottom-2 w-[230px]">
-        <div className="flex justify-between mt-2 text-[12px]">
+      <div className=" p-3 absolute left-[50%] translate-x-[-50%] bottom-2 w-[230px] max-lg:w-full lg:max-[1500px]:w-full">
+        <div className="flex justify-between mt-2 text-[12px] max-lg:justify-around">
           <span className="text-white">
             {props.data.first_air_date || props.data.release_date}
           </span>
@@ -147,9 +142,9 @@ const Movie = (props) => {
         </div>
         <Link
           to={`/movie/${props.data.id}`}
-          className="cursor-pointer text-white w-[12rem] mt-2 mx-auto text-xl bg-[#ff0077] py-2 rounded-lg flex justify-center items-center "
+          className="cursor-pointer text-white w-[12rem] mt-2 mx-auto text-xl bg-[#ff0077] py-2 rounded-lg flex justify-center items-center lg:max-xl:w-full "
         >
-          Watch Now<i className="fa-solid fa-circle-play ml-3  "></i>
+          Watch Now<i className="fa-solid fa-circle-play ml-3"></i>
         </Link>
       </div>
     </div>

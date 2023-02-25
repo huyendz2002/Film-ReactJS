@@ -24,7 +24,7 @@ const MovieDetails = (props) => {
   }, [movieId]);
   return (
     <Fragment>
-      <div className="bg-[#3d3d3d] h-auto">
+      <div className="bg-[#3d3d3d] h-auto ">
         <div className="w-full h-[600px] relative">
           <img
             className="w-full h-full object-cover"
@@ -43,7 +43,7 @@ const MovieDetails = (props) => {
         <h1 className="mt-[15rem] text-white font-semibold text-3xl text-center">
           {details.title}
         </h1>
-        <div className="flex mx-auto gap-4 max-w-max mt-8 ">
+        <div className=" flex max-lg:flex-wrap content-center mx-auto gap-4 max-w-max mt-8 justify-center">
           {genres.length > 0 &&
             genres.map((item) => (
               <span
@@ -58,14 +58,14 @@ const MovieDetails = (props) => {
           {details.overview}
         </p>
         <h2 className="text-3xl text-white mt-8 text-center">Casts</h2>
-        <div className="flex gap-8 mt-8 mx-auto w-2/3 ">
+        <div className=" flex max-lg:flex-wrap max-lg:justify-center gap-8 mt-8 mx-auto w-2/3 ">
           <MovieCast id={movieId}></MovieCast>
         </div>
-        <div className="flex justify-around mt-10">
+        <div className="w-full flex justify-around mt-10 max-lg:block max-lg:w-full lg:max-[1500px]:justify-between lg:max-[1500px]:w-full">
           <MovieVideo id={movieId}></MovieVideo>
         </div>
         <h1 className="text-2xl text-white mt-8 p-5">Movies Similar</h1>
-        <div className="flex justify-between  h-[25rem] p-5 ">
+        <div className="flex justify-between h-[25rem] p-5 max-lg:w-full max-lg:grid max-lg:grid-cols-2 max-lg:h-auto max-lg:gap-4  max-lg:p-0">
           <MovieSimilar id={movieId}></MovieSimilar>
         </div>
       </div>
@@ -89,13 +89,13 @@ const MovieCast = (props) => {
     <Fragment>
       {casts.length > 0 &&
         casts.slice(0, 4).map((cast, index) => (
-          <div key={cast.id} className="text-white h-full ">
+          <div key={cast.id} className="text-white h-auto w-1/4 ">
             <img
               src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
               alt=""
-              className=""
+              className="w-full"
             />
-            <h3 className="text-center text-xl mt-1">{cast.name}</h3>
+            <h3 className="text-center text-lg mt-1">{cast.name}</h3>
           </div>
         ))}
     </Fragment>
@@ -118,8 +118,12 @@ const MovieVideo = (props) => {
     <Fragment>
       {videos.length > 0 &&
         videos.slice(0, 2).map((video, index) => (
-          <div key={video.id} className=" max-w-max ">
+          <div
+            key={video.id}
+            className=" max-lg:max-w-full max-lg:p-2 max-lg:mb-4 lg:max-[1500px]:w-1/2 lg:max-[1500px]:p-2"
+          >
             <iframe
+              className="max-lg:w-full lg:max-[1500px]:w-full"
               width="700"
               height="503"
               src={`https://www.youtube.com/embed/${video.key}`}
@@ -152,7 +156,7 @@ const MovieSimilar = (props) => {
         similars.slice(0, 5).map((similar, index) => (
           <div
             key={similar.id}
-            className="w-[16rem] h-full bg-slate-800 p-3 rounded-lg relative  "
+            className="w-[16rem] h-full bg-slate-800 p-3 rounded-lg relative max-lg:w-auto max-lg:h-[26rem] lg:max-[1500px]:w-1/6"
           >
             <img
               className="w-full h-[14rem] object-cover rounded-lg "
@@ -163,7 +167,7 @@ const MovieSimilar = (props) => {
               <i className="fa-solid fa-plus font-medium text-white text-lg"></i>
             </div>
             <h3 className="text-white mt-2 text-[14px]">{similar.title}</h3>
-            <div className="absolute w-[14.5rem] bottom-3">
+            <div className="absolute w-[14.5rem] bottom-3 max-lg: max-lg:left-1/2 max-lg:translate-x-[-50%] max-lg:w-full max-lg:px-4 lg:max-[1500px]:w-full lg:max-[1500px]:left-0 lg:max-[1500px]:px-3">
               <div className="flex justify-between mt-2 text-[12px]">
                 <span className="text-white">{similar.release_date}</span>
                 <span className="text-white">
@@ -173,9 +177,10 @@ const MovieSimilar = (props) => {
               </div>
               <Link
                 to={`/movie/${similar.id}`}
-                className="cursor-pointer text-white w-[12rem] mt-2 mx-auto text-xl bg-[#ff0077] py-2 rounded-lg flex justify-center items-center "
+                className="lg:max-[1500px]:w-full max-lg:w-3/4 max-[477px]:block max-[477px]:text-center cursor-pointer text-white w-[12rem] mt-2 mx-auto text-xl bg-[#ff0077] py-2 rounded-lg flex justify-center items-center "
               >
-                Watch Now<i className="fa-solid fa-circle-play ml-3  "></i>
+                Watch Now{" "}
+                <i className="fa-solid fa-circle-play ml-3 max-[477px]:ml-0"></i>
               </Link>
             </div>
           </div>
